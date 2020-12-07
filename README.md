@@ -1,5 +1,5 @@
 # ssm-unix-user-logon
-#Short description
+Short description:
 Allows AWS SSO user that has SSM access to be able to connect to an ssm compatible instance and connect to their own user profile. If there is not user profile one will be created.
 
 When SSM Session Manager starts it creates a manifest at '/var/lib/amazon/ssm/<instanceid>/document/state/current/<sessionid>' that contains various bits of information about the session. This includes the process id of the session manager process.
@@ -10,11 +10,11 @@ Because the session id contains the username of the federated user we can use th
 
 
 
-#Requirements
+Requirements:
 If you want to make this seamless make sure all instances that you will connect to with Session Manager has a recent SSM Agent version. Shell profiles became available with 3.0.196.0 and the one tested here is with version 3.0.284.0. Assuming script is located at /home/ecs-user/ssmsessionlogon.sh set the Linux shell profile to:
 
 
-#Use instructions
+Use instructions:
 1. To use this method you first need to install jq on the instance. This is not standard on Amazon Linux. You can install it on Amazon Linux:
 
 sudo yum install jq -y
