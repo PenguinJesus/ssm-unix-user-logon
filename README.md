@@ -9,6 +9,11 @@ The sh shell created at connection time is a child process of the session proces
 Because the session id contains the username of the federated user we can use that to determine the active user and start a shell for that user.
 
 
+
+#Requirements
+If you want to make this seamless make sure all instances that you will connect to with Session Manager has a recent SSM Agent version. Shell profiles became available with 3.0.196.0 and the one tested here is with version 3.0.284.0. Assuming script is located at /home/ecs-user/ssmsessionlogon.sh set the Linux shell profile to:
+
+
 #Use instructions
 1. To use this method you first need to install jq on the instance. This is not standard on Amazon Linux. You can install it on Amazon Linux:
 
@@ -23,3 +28,8 @@ To use it assuming it is installed in /home/ec2-user/ run as follows:
 sudo /home/ec2-user/ssmsessionlogon.sh $PPID
 
 Then when a user logs on to session manager the script will run, create the user and change to that user. If the user exists it will silently fail creation but still change to that user. You can also create a custom session document if required to only use the shell profile for specific users.
+
+
+3. Then go to Session Manager preferences and assuming script is located at /home/ecs-user/ssmsessionlogon.sh set the Linux shell profile to so it runs whenever an SSM user connects:
+
+sudo /home/ec2-user/ssmsessionlogon.sh $PPID
